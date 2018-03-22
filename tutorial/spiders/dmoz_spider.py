@@ -75,7 +75,6 @@ class DmozSpider(scrapy.Spider):
         max_supply = ""
         if len(_max_supply):
             max_supply = _max_supply[0].strip().encode('unicode-escape').decode('string_escape')
-        
 
         _item['max_supply'] = max_supply
         sql = """INSERT INTO currencys(c_index, name, market_cap, price, volume_24h, circulating_supply, change_24h, max_supply, url, create_at) VALUES """     
