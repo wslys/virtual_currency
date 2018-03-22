@@ -16,17 +16,6 @@
     <title><?= $title ?></title>
     <meta name="description" content="数字货币列表。">
 
-    <link rel="canonical" href="http://docs.ghostchina.com/zh/installation/">
-    <link rel="alternate" hreflang="en" href="http://docs.ghostchina.com/installation/">
-    <link rel="alternate" hreflang="zh" href="http://docs.ghostchina.com/zh/installation/">
-    <link rel="alternate" hreflang="ko" href="http://docs.ghostchina.com/ko/installation/">
-    <link rel="alternate" hreflang="de" href="http://docs.ghostchina.com/de/installation/">
-    <link rel="alternate" hreflang="fr" href="http://docs.ghostchina.com/fr/installation/">
-    <link rel="alternate" hreflang="pl" href="http://docs.ghostchina.com/pl/installation/">
-    <link rel="alternate" hreflang="ja" href="http://docs.ghostchina.com/ja/installation/">
-    <link rel="alternate" hreflang="it" href="http://docs.ghostchina.com/it/installation/">
-    <link rel="alternate" hreflang="zh_TW" href="http://docs.ghostchina.com/zh_TW/installation/">
-
     <link rel="stylesheet" href="assets/bootstrap.css">
     <link rel="stylesheet" href="assets/main.css">
 

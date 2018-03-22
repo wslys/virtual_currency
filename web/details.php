@@ -24,9 +24,7 @@ $title = "虚拟货币详情"
 
 <header class="navbar navbar-fixed-top bs-docs-nav">
     <nav class="container">
-        <a href="http://docs.ghostchina.com/zh/" class="navbar-brand">
-            数字货币列表
-        </a>
+        <a href="/" class="navbar-brand">数字货币列表</a>
         <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -34,48 +32,27 @@ $title = "虚拟货币详情"
         </button>
         <div class="nav-collapse collapse bs-navbar-collapse">
             <ul class="nav navbar-nav">
-                <li>
-                    <a href="http://docs.ghostchina.com/zh/installation/">
-                        Title
-                    </a>
-                </li>
-                <li>
-                    <a href="http://docs.ghostchina.com/zh/usage/">
-                        Title
-                    </a>
-                </li>
-                <li>
-                    <a href="http://docs.ghostchina.com/zh/mail/">
-                        Title
-                    </a>
-                </li>
-                <li>
-                    <a href="http://docs.ghostchina.com/zh/themes/">
-                        Title
-                    </a>
-                </li>
-                <li>
-                    <a href="http://ghost.org/forum/">
-                        Title
-                    </a>
-                </li>
+                <li><a href="/">Title</a></li>
+                <li><a href="/">Title</a></li>
+                <li><a href="/">Title</a></li>
+                <li><a href="/">Title</a></li>
+                <li><a href="/">Title</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown"
-                       href="http://docs.ghostchina.com/zh/installation/#">中文 <b class="caret"></b></a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="/">中文 <b class="caret"></b></a>
 
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
 
-                        <li><a href="http://docs.ghostchina.com/installation/">English</a></li>
+                        <li><a href="/">English</a></li>
                         <li></li>
-                        <li><a href="http://docs.ghostchina.com/ko/installation/">한국의</a></li>
-                        <li><a href="http://docs.ghostchina.com/de/installation/">Deutsch</a></li>
-                        <li><a href="http://docs.ghostchina.com/fr/installation/">Français</a></li>
-                        <li><a href="http://docs.ghostchina.com/pl/installation/">Polski</a></li>
-                        <li><a href="http://docs.ghostchina.com/ja/installation/">日本語</a></li>
-                        <li><a href="http://docs.ghostchina.com/it/installation/">Italiano</a></li>
-                        <li><a href="http://docs.ghostchina.com/zh_TW/installation/">繁體中文</a></li>
+                        <li><a href="/">한국의</a></li>
+                        <li><a href="/">Deutsch</a></li>
+                        <li><a href="/">Français</a></li>
+                        <li><a href="/">Polski</a></li>
+                        <li><a href="/">日本語</a></li>
+                        <li><a href="/">Italiano</a></li>
+                        <li><a href="/">繁體中文</a></li>
                     </ul>
                 </li>
             </ul>
