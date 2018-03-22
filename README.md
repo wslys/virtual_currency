@@ -5,7 +5,7 @@
     
 # 环境
     
-    1、Python2.3以上
+    1、Python2.7以上
     2、scrapy 安装
     3、python MySQLdb 库安装
     
