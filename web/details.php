@@ -9,7 +9,7 @@ if (!$c_id) {
 $sql = "SELECT * FROM currencys WHERE c_index=$c_id";
 $data = $db->getRow($sql);
 
-// TODO
+// TODO 应取当日的数据
 $market_sql = "SELECT * FROM markets WHERE c_index=$c_id AND TO_DAYS(NOW())-TO_DAYS(create_at) <= 1";
 $market_list = $db->getRows($market_sql);
 
@@ -17,39 +17,10 @@ $count = $db->getRow("SELECT COUNT(*) FROM markets WHERE c_index=$c_id AND TO_DA
 
 $historical_sql = "SELECT * FROM historical_data WHERE c_index=$c_id AND TO_DAYS(NOW())-TO_DAYS(create_at)<=2";
 $historical_list = $db->getRows($historical_sql);
+$title = "虚拟货币详情"
 ?>
 
-<!DOCTYPE html>
-<html lang="zh">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>数字货币列表</title>
-    <meta name="description" content="数字货币列表。">
-
-    <link rel="canonical" href="http://docs.ghostchina.com/zh/installation/">
-    <link rel="alternate" hreflang="en" href="http://docs.ghostchina.com/installation/">
-    <link rel="alternate" hreflang="zh" href="http://docs.ghostchina.com/zh/installation/">
-    <link rel="alternate" hreflang="ko" href="http://docs.ghostchina.com/ko/installation/">
-    <link rel="alternate" hreflang="de" href="http://docs.ghostchina.com/de/installation/">
-    <link rel="alternate" hreflang="fr" href="http://docs.ghostchina.com/fr/installation/">
-    <link rel="alternate" hreflang="pl" href="http://docs.ghostchina.com/pl/installation/">
-    <link rel="alternate" hreflang="ja" href="http://docs.ghostchina.com/ja/installation/">
-    <link rel="alternate" hreflang="it" href="http://docs.ghostchina.com/it/installation/">
-    <link rel="alternate" hreflang="zh_TW" href="http://docs.ghostchina.com/zh_TW/installation/">
-
-    <link rel="stylesheet" href="assets/bootstrap.css">
-    <link rel="stylesheet" href="assets/main.css">
-
-    <!--[if lt IE 9]>
-    <script src="/assets/js/html5shiv.js"></script>
-    <script src="/assets/js/respond.min.js"></script>
-    <![endif]-->
-
-    <link rel="shortcut icon" href="http://docs.ghostchina.com/assets/img/favicon.ico">
-</head>
-<body>
+<?php include 'head.php'; ?>
 
 <header class="navbar navbar-fixed-top bs-docs-nav">
     <nav class="container">
@@ -157,17 +128,17 @@ $historical_list = $db->getRows($historical_sql);
                             </tr>
                             </thead>
                             <tbody>
-                            <?php foreach ($market_list as $item) { ?>
+                            <?php $key = 1; foreach ($market_list as $item) { ?>
                                 <tr>
-                                    <td>1</td>
-                                    <td>Date</td>
+                                    <td><?= $key ?></td>
                                     <td><?= $item['source'] ?></td>
                                     <td><?= $item['pair'] ?></td>
                                     <td><?= "$" . $item['volume'] ?></td>
                                     <td><?= "$" . $item['price'] ?></td>
                                     <td><?= round($item['volumes'], 2) . '%' ?></td>
+                                    <td>Recently</td>
                                 </tr>
-                            <?php } ?>
+                            <?php $key ++; } ?>
                             </tbody>
                         </table>
                     </div>
@@ -188,7 +159,7 @@ $historical_list = $db->getRows($historical_sql);
                             <tbody>
                             <?php foreach ($historical_list as $item) { ?>
                                 <tr>
-                                    <td><?= $item['old_date'] ?></td>
+                                    <td><?= explode(' ', $item['old_date'])[0] ?></td>
                                     <td><?= $item['open'] ?></td>
                                     <td><?= $item['hight'] ?></td>
                                     <td><?= $item['low'] ?></td>
@@ -207,24 +178,5 @@ $historical_list = $db->getRows($historical_sql);
 
 </main>
 
-<footer id="global-footer">
-    <p>XXXXXXXXXXXXXXXXXXX<a href="http://john.onolan.org/"> XXXXX </a> + <a
-                href="http://erisds.co.uk/">XXX XXX</a> + XXXXXXXXXXXXXXXXXXXXXXXXXXXXX <a
-                href="https://github.com/TryGhost/Ghost/contributors">XXXXXXXXXXXXXXXXX</a>.</p>
-    <hr>
-    <p>XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX<a
-                href="http://tryghost.org/about/license.html">MIT</a> License.<br>
-        XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX <a href="http://creativecommons.org/licenses/by/3.0/">XXXXXXXXXXXXXXXX</a>
-        AAAAAAA.</p>
-</footer>
+<?php include 'footer.php'; ?>
 
-<script src="assets/jquery.min.js"></script>
-<script src="assets/bootstrap.min.js"></script>
-<script src="assets/main.js"></script>
-<script type="text/javascript">
-    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Faab3afe3c1d7901ed91ebed930658acb' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script src="assets/h.js" type="text/javascript"></script>
-</body>
-</html>
