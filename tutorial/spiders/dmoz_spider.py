@@ -1,17 +1,19 @@
 # -*- coding:utf-8 -*-
-import scrapy #导入scrapy包
+import scrapy # 导入scrapy包
 
-from scrapy.http import Request ##一个单独的request的模块，需要跟进URL的时候，需要用它
+from scrapy.http import Request # 一个单独的request的模块，需要跟进URL的时候，需要用它
 from tutorial.items import DmozItem, CurrencyItem
 import json, MySQLdb, time, os 
 
 class DmozSpider(scrapy.Spider):
     name = 'dmoz'
-    bash_url = 'https://coinmarketcap.com/'
+    bash_url = 'https://coinmarketcap.com'
 
     def start_requests(self):
         for i in range(1, 17):
-            url = self.bash_url + str(i)
+            url = self.bash_url + "/" + str(i)
+            # if i==1:
+            #     url = self.bash_url
             yield Request(url, self.parseOne)
 
     def parseOne(self, response):
@@ -53,14 +55,15 @@ class DmozSpider(scrapy.Spider):
             yield request
 
         for item in items:
-            url  = self.bash_url + str(item['url']) + "/#markets"
+            # url  = self.bash_url + str(item['url']) + "/#markets/"
+            url  = self.bash_url + str(item['url']) + "/"
             request = Request(url, callback=self.singleMarkets)
             request.meta['type_name'] = str(item['name'])
             request.meta['index'] = str(item['index'])
             yield request
 
         for item in items:
-            url  = self.bash_url + str(item['url']) + "/historical-data/"
+            url  = self.bash_url + str(item['url']) + "historical-data/"
             request = Request(url, callback=self.historicalData)
             request.meta['type_name'] = item['name']
             request.meta['index'] = str(item['index'])
@@ -70,8 +73,8 @@ class DmozSpider(scrapy.Spider):
         _item = response.meta['item']
         _max_supply = response.xpath('//body/div[4]/div[1]/div[1]/div[4]/div[1]/div[5]/div[2]/span/@data-format-value').extract()
         
-        # TODO 
-        print DmozSpider.objToStr(_item)
+        # TODO 对象转字符 
+        # print DmozSpider.objToStr(_item)
         max_supply = ""
         if len(_max_supply):
             max_supply = _max_supply[0].strip().encode('unicode-escape').decode('string_escape')
@@ -97,9 +100,10 @@ class DmozSpider(scrapy.Spider):
             Volume_S   = sel.xpath('td[6]/@data-sort').extract()[0].strip().encode('unicode-escape').decode('string_escape')
 
             if i>100:break
-            sql += "('" + _index + "', '" + type_name + "', '" + Source + "', '" + Pair + "', '" + Volume_24H + "', " + Price + ", '" + Volume_S + "', '" + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + "'),"
-            i += 1  
+            sql += "(\"" + _index + "\", \"" + type_name + "\", \"" + Source + "\", \"" + Pair + "\", \"" + Volume_24H + "\", \"" + Price + "\", \"" + Volume_S + "\", \"" + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + "\"),"
+            i += 1
 
+        # print sql
         self.execute_sql(sql[:-1])
 
     def historicalData(self, response):
@@ -120,8 +124,9 @@ class DmozSpider(scrapy.Spider):
             localTime = time.localtime(timeStamp) 
             strTime   = time.strftime("%Y-%m-%d %H:%M:%S", localTime) 
             
-            sql += "('" + _index + "', '" + type_name + "', '" + strTime + "', '" + Open + "', '" + High + "', " + Low + ", '" + Close + "', '" + Volume + "', '" + MarketCap + "', '" + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + "'),"
-            
+            sql += "(\"" + _index + "\", \"" + type_name + "\", \"" + strTime + "\", \"" + Open + "\", \"" + High + "\", \"" + Low + "\", \"" + Close + "\", \"" + Volume + "\", \"" + MarketCap + "\", \"" + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + "\"),"
+
+        # print sql
         self.execute_sql(sql[:-1])
 
     @staticmethod
@@ -136,6 +141,7 @@ class DmozSpider(scrapy.Spider):
             cursor.execute(sql)
             db.commit()
         except:
+            print sql
             db.rollback()
 
         db.close()

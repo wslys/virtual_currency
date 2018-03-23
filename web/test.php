@@ -8,3 +8,5 @@
 
 echo "wsl wsl";
 
+echo file_get_contents('index.php');
+

@@ -14,3 +14,5 @@ alter table currencys add url varchar(255);
 
 # 清空表 
 truncate table `currencys`;
+
+mysqldump -uroot -p123456 tutorial > /home/user/www/数据库名.sql

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: user
- * Date: 18-3-20
- * Time: 下午11:19
- */
 
 include "basic.php";
 
@@ -19,7 +13,7 @@ $count_sql = "SELECT COUNT(*) AS c FROM currencys";
 $count = $db->getRow($count_sql);
 $page_count = (int)($count['c'] / $pageSize);
 
-$title = "虚拟货币列表"
+$title = "虚拟货币列表";
 ?>
 
 <?php include 'head.php'; ?>
